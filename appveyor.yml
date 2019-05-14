@@ -4,8 +4,6 @@ image: Ubuntu1804
 init:
   - sh: curl -sflL 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-ssh.sh' | bash -e -
 
-clone_folder: /usr/go/src/github.com/$username/$project
-
 environment:
   GOPATH: /usr/go/
   GO111MODULES: on
