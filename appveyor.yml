@@ -11,7 +11,7 @@ environment:
 
 stack: go 1.11.2
 build_script:
-    - sh: sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
+    - sh: sudp apt-get update && sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
     - sh: wget https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip
     - sh: sudo mv packer /usr/local/bin
     - sh: go build -o dist/imageadm .
