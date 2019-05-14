@@ -1,0 +1,12 @@
+*.iso
+output-*/
+packer_cache*
+preseed.cfg
+packer.json
+imageadm
+.DS_Store
+ubuntu*
+debian*
+centos*
+*.bak
+
