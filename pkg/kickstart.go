@@ -1,5 +1,10 @@
 package pkg
 
+import (
+	"io/ioutil"
+	"os"
+)
+
 var kickstart = `
 install
 cdrom
@@ -100,3 +105,14 @@ ONBOOT=yes
 _EOF_
 %end
 `
+
+func SaveKickstart(vars Variables) func() {
+	err := ioutil.WriteFile("ks.cfg", []byte(Interpolate(kickstart, vars)), os.ModePerm)
+	if err != nil {
+		panic(err)
+	}
+
+	return func() {
+		os.Remove("ks.cfg")
+	}
+}

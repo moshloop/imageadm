@@ -2,9 +2,10 @@ package pkg
 
 func init() {
 	ISO["debian9"] = iso{
-		Name:     "debian-9",
-		URL:      "https://saimei.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
-		Checksum: "d4a22c81c76a66558fb92e690ef70a5d67c685a08216701b15746586520f6e8e",
+		Name:       "debian-9",
+		BeforeBoot: SavePreseed,
+		URL:        "https://saimei.ftp.acc.umu.se/debian-cd/current/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
+		Checksum:   "d4a22c81c76a66558fb92e690ef70a5d67c685a08216701b15746586520f6e8e",
 		BootCommand: []string{
 			"<esc><wait>",
 			"install <wait>",
@@ -26,9 +27,10 @@ func init() {
 	}
 
 	ISO["debian8"] = iso{
-		Name:     "debian-8",
-		URL:      "https://cdimage.debian.org/cdimage/archive/8.10.0/amd64/iso-cd/debian-8.10.0-amd64-netinst.iso",
-		Checksum: "896cc42998edf65f1db4eba83581941fb2a584f2214976432b841af96b17ccda",
+		Name:       "debian-8",
+		BeforeBoot: SavePreseed,
+		URL:        "https://cdimage.debian.org/cdimage/archive/8.10.0/amd64/iso-cd/debian-8.10.0-amd64-netinst.iso",
+		Checksum:   "896cc42998edf65f1db4eba83581941fb2a584f2214976432b841af96b17ccda",
 		BootCommand: []string{
 			"<esc><wait>",
 			"install <wait>",
@@ -50,17 +52,19 @@ func init() {
 	}
 
 	ISO["centos7"] = iso{
-		Name:     "centos7",
-		URL:      "http://mirrors.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso",
-		Checksum: "6d44331cc4f6c506c7bbe9feb8468fad6c51a88ca1393ca6b8b486ea04bec3c1",
+		Name:       "centos7",
+		BeforeBoot: SaveKickstart,
+		URL:        "http://mirrors.kernel.org/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso",
+		Checksum:   "6d44331cc4f6c506c7bbe9feb8468fad6c51a88ca1393ca6b8b486ea04bec3c1",
 		BootCommand: []string{
 			"<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>",
 		},
 	}
 	ISO["ubuntu1804"] = iso{
-		Name:     "ubuntu-bionic",
-		Checksum: "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
-		URL:      "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.2-server-amd64.iso",
+		Name:       "ubuntu-bionic",
+		BeforeBoot: SavePreseed,
+		Checksum:   "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
+		URL:        "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.2-server-amd64.iso",
 		BootCommand: []string{
 			"<esc><wait>",
 			"<esc><wait>",
@@ -88,9 +92,10 @@ func init() {
 	}
 
 	ISO["ubuntu1604"] = iso{
-		Name:     "ubuntu-xenial",
-		Checksum: "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
-		URL:      "http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso",
+		Name:       "ubuntu-xenial",
+		BeforeBoot: SavePreseed,
+		Checksum:   "16afb1375372c57471ea5e29803a89a5a6bd1f6aabea2e5e34ac1ab7eb9786ac",
+		URL:        "http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso",
 		BootCommand: []string{
 			"<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
 			"<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",

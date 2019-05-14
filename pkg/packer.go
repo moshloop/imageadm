@@ -8,12 +8,15 @@ import (
 	"path"
 )
 
+type BeforeBootHandler func(vars Variables) func()
+
 type iso struct {
 	Name        string
 	URL         string
 	Checksum    string
 	BootCommand []string
 	Preseed     string
+	BeforeBoot  BeforeBootHandler
 }
 
 var ISO = make(map[string]iso)
@@ -126,10 +129,11 @@ func NewPacker(username string, password string, iso iso) Packer {
 }
 
 func (p Packer) Build() {
-	cleanup := SavePreseed(p.Variables)
+	cleanup := p.Variables.ISO.BeforeBoot(p.Variables)
+	// cleanup := SavePreseed(p.Variables)
 	defer cleanup()
 	data, _ := json.Marshal(p)
-	os.Remove("packer.json")
+	_ = os.Remove("packer.json")
 	err := ioutil.WriteFile("packer.json", data, os.ModePerm)
 	if err != nil {
 		panic(err)

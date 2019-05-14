@@ -9,7 +9,6 @@ import (
 func getQemuArgs(vars Variables) [][]string {
 	args := [][]string{
 		{"-m", fmt.Sprintf("%s", vars.Memory)},
-
 		{"-smp", fmt.Sprintf("cpus=%s", vars.Cpus)},
 	}
 
