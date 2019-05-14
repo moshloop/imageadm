@@ -20,7 +20,7 @@ before_install:
   - sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
   - wget https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip
   - unzip packer_1.4.0_linux_amd64.zip
-  - mv packer $(which packer)
+  - sudo mv packer $(which packer)
   - go build -o dist/imageadm .
   - ./dist/imageadm build --image $IMAGE
 
