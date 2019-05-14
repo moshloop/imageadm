@@ -19,7 +19,7 @@ go:
 before_install:
   - sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
   - go build -o dist/imageadm .
-  - ./dist/imageadm --image $IMAGE
+  - ./dist/imageadm build --image $IMAGE
 
 script:
   - make all
