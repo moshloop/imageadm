@@ -12,7 +12,7 @@ func getQemuArgs(vars Variables) [][]string {
 		machine = []string{"-machine", "accel=hvf"}
 	}
 
-	if _, err := os.Stat("/dev/kvm"); err != nil {
+	if _, err := os.Stat("/dev/kvm"); err == nil {
 		machine = []string{"-machine", "accel=kvm"}
 	}
 	return [][]string{
