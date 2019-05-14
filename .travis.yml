@@ -1,0 +1,34 @@
+services:
+  - docker
+
+sudo: required
+env:
+  - GO111MODULE=on IMAGE=debian8
+  - GO111MODULE=on IMAGE=debian9
+  - GO111MODULE=on IMAGE=ubuntu1604
+  - GO111MODULE=on IMAGE=ubuntu1804
+  - GO111MODULE=on IMAGE=centos7
+
+
+
+
+language: go
+go:
+  - 1.11.x
+
+before_install:
+  - sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
+  - go build -o dist/imageadm .
+  - ./dist/imageadm --image $IMAGE
+
+script:
+  - make all
+
+deploy:
+  provider: script
+  script: bash scripts/release.sh
+  on:
+    tags: true
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
