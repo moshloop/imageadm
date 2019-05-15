@@ -3,24 +3,22 @@ services:
 
 sudo: required
 env:
-  - GO111MODULE=on IMAGE=debian8
-  - GO111MODULE=on IMAGE=debian9
-  - GO111MODULE=on IMAGE=ubuntu1604
+  # - GO111MODULE=on IMAGE=debian8
+  # - GO111MODULE=on IMAGE=debian9
+  # - GO111MODULE=on IMAGE=ubuntu1604
   - GO111MODULE=on IMAGE=ubuntu1804
-  - GO111MODULE=on IMAGE=centos7
-
-
-
-
+  # - GO111MODULE=on IMAGE=centos7
+os: osx
 language: go
 go:
   - 1.11.x
 
 before_install:
-  - sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
-  - wget https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip
-  - unzip packer_1.4.0_linux_amd64.zip
-  - sudo mv packer $(which packer)
+  - brew install packer demu go
+  # - sudo apt-get -y install qemu-system-x86 kpartx python-pexpect python-serial
+  # - wget https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_amd64.zip
+  # - unzip packer_1.4.0_linux_amd64.zip
+  # - sudo mv packer $(which packer)
   - go build -o dist/imageadm .
   - ./dist/imageadm build --image $IMAGE
 
