@@ -58,23 +58,23 @@ type Variables struct {
 }
 
 type Builder struct {
-	Type              string     `json:"type"`
-	BootCommand       []string   `json:"boot_command"`
-	DiskSize          string     `json:"disk_size"`
-	FloppyFiles       []string   `json:"floppy_files"`
-	Headless          string     `json:"headless"`
-	Format            string     `json:"format"`
-	SkipCompaction    bool       `json:"skip_compaction"`
-	HTTPDirectory     string     `json:"http_directory"`
-	IsoChecksum       string     `json:"iso_checksum"`
-	IsoChecksumType   string     `json:"iso_checksum_type"`
-	IsoUrls           []string   `json:"iso_urls"`
-	OutputDirectory   string     `json:"output_directory"`
-	ShutdownCommand   string     `json:"shutdown_command"`
-	SSHPassword       string     `json:"ssh_password"`
-	SSHUsername       string     `json:"ssh_username"`
-	SSHWaitTimeout    string     `json:"ssh_wait_timeout"`
-	BootKeyInterval   string     `json:"boot_key_interval"`
+	Type            string   `json:"type"`
+	BootCommand     []string `json:"boot_command"`
+	DiskSize        string   `json:"disk_size"`
+	FloppyFiles     []string `json:"floppy_files"`
+	Headless        string   `json:"headless"`
+	Format          string   `json:"format"`
+	SkipCompaction  bool     `json:"skip_compaction"`
+	HTTPDirectory   string   `json:"http_directory"`
+	IsoChecksum     string   `json:"iso_checksum"`
+	IsoChecksumType string   `json:"iso_checksum_type"`
+	IsoUrls         []string `json:"iso_urls"`
+	OutputDirectory string   `json:"output_directory"`
+	ShutdownCommand string   `json:"shutdown_command"`
+	SSHPassword     string   `json:"ssh_password"`
+	SSHUsername     string   `json:"ssh_username"`
+	SSHWaitTimeout  string   `json:"ssh_wait_timeout"`
+	// BootKeyInterval   string     `json:"boot_key_interval"`
 	UseDefaultDisplay string     `json:"use_default_display"`
 	VMName            string     `json:"vm_name"`
 	Qemuargs          [][]string `json:"qemuargs"`
@@ -112,18 +112,18 @@ func NewPacker(username string, password string, iso iso) Packer {
 			Format:            "raw",
 			Headless:          "true",
 			SkipCompaction:    true,
-			BootKeyInterval:   "100ms",
-			SSHWaitTimeout:    "10000s",
-			ShutdownCommand:   fmt.Sprintf("echo '%s' | sudo -S shutdown -P now", vars.Password),
-			SSHUsername:       vars.Username,
-			SSHPassword:       vars.Password,
-			HTTPDirectory:     "./",
-			VMName:            vars.Hostname,
-			OutputDirectory:   "output-" + iso.Name,
-			FloppyFiles:       []string{vars.Preseed},
-			IsoChecksum:       iso.Checksum,
-			IsoChecksumType:   "sha256",
-			IsoUrls:           []string{path.Base(iso.URL), iso.URL},
+			// BootKeyInterval:   "100ms",
+			SSHWaitTimeout:  "10000s",
+			ShutdownCommand: fmt.Sprintf("echo '%s' | sudo -S shutdown -P now", vars.Password),
+			SSHUsername:     vars.Username,
+			SSHPassword:     vars.Password,
+			HTTPDirectory:   "./",
+			VMName:          vars.Hostname,
+			OutputDirectory: "output-" + iso.Name,
+			FloppyFiles:     []string{vars.Preseed},
+			IsoChecksum:     iso.Checksum,
+			IsoChecksumType: "sha256",
+			IsoUrls:         []string{path.Base(iso.URL), iso.URL},
 		}},
 	}
 }
